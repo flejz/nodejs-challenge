@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title!= name
+    link(href="/css/auction.css", rel="stylesheet" ,type="text/css")
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel="stylesheet" ,type="text/css")
+  body
+      .container
+        .page-header  
+          .row
+            .col-md-2
+            .col-md-6
+                label(for=details)= product.name
+                #details.panel.panel-default.panel-body
+                  #description!= product.description
+                  img#picture(src= product.picture_path)
+                  
+              .col-md-3  
+                  label(for=winningBid) Winning Bid
+                  #winningBid.panel.panel-default.panel-body
+                    if (typeof(highestBid) !== 'undefined')
+                      b Amount ($):
+                      #value!= highestBid.value
+                      #client
+                        span 
+                          b Username:
+                          #name!= highestBid.client.username
+                        span 
+                          b From:
+                          #country!= highestBid.client.country
+            
+        .row
+          .col-md-2
+          .col-md-6
+            label(for=message) Place a bid!
+            form#bidForm.input-group
+              input(type="text", name="clientId", value="me", style="display:none")
+              
+              input#bid.form-control(name='value', type='number', placeholder='Bid value')
+              .input-group-btn
+                button#send.btn.btn-success(type='button') Send
+
+    script(type="text/javascript", src="https://code.jquery.com/jquery-3.1.0.min.js")
+    script(type="text/javascript", src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    script(tyoe="text/javascript", src="/socket.io/socket.io.js")
+    script(type="text/javascript", src="/js/auction.js")
+      
+  

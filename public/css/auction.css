@@ -1,0 +1,13 @@
+
+#details #picture {
+  height: 200px;
+}
+
+#winningBid #value{
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+#winningBid #client span b{
+  display: inline;
+}
